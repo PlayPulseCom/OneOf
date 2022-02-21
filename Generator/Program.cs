@@ -5,28 +5,29 @@ using static System.Reflection.Assembly;
 using static System.Linq.Enumerable;
 using System;
 using System.Collections.Generic;
+using Generator;
 
-var sourceRoot = GetFullPath(Combine(GetDirectoryName(GetExecutingAssembly().Location)!, @"..\..\..\.."));
+var sourceRoot = GetFullPath(Combine(GetDirectoryName(GetExecutingAssembly().Location)!, @"../../../.."));
 
 for (var i = 1; i < 10; i++) {
     var output = GetContent(true, i);
-    var outpath = Combine(sourceRoot, $"OneOf\\OneOfT{i - 1}.generated.cs");
+    var outpath = Combine(sourceRoot, $"OneOf/OneOfT{i - 1}.generated.cs");
     File.WriteAllText(outpath, output);
 
     var output2 = GetContent(false, i);
-    var outpath2 = Combine(sourceRoot, $"OneOf\\OneOfBaseT{i - 1}.generated.cs");
+    var outpath2 = Combine(sourceRoot, $"OneOf/OneOfBaseT{i - 1}.generated.cs");
     File.WriteAllText(outpath2, output2);
 }
 
-for (var i = 10; i < 33; i++) {
-    var output3 = GetContent(true, i);
-    var outpath3 = Combine(sourceRoot, $"OneOf.Extended\\OneOfT{i - 1}.generated.cs");
-    File.WriteAllText(outpath3, output3);
+//for (var i = 10; i < 33; i++) {
+//    var output3 = GetContent(true, i);
+//    var outpath3 = Combine(sourceRoot, $"OneOf.Extended/OneOfT{i - 1}.generated.cs");
+//    File.WriteAllText(outpath3, output3);
 
-    var output4 = GetContent(false, i);
-    var outpath4 = Combine(sourceRoot, $"OneOf.Extended\\OneOfBaseT{i - 1}.generated.cs");
-    File.WriteAllText(outpath4, output4);
-}
+//    var output4 = GetContent(false, i);
+//    var outpath4 = Combine(sourceRoot, $"OneOf.Extended/OneOfBaseT{i - 1}.generated.cs");
+//    File.WriteAllText(outpath4, output4);
+//}
 
 string GetContent(bool isStruct, int i) {
     string RangeJoined(string delimiter, Func<int, string> selector) => Range(0, i).Joined(delimiter, selector);
@@ -134,7 +135,25 @@ namespace OneOf
                         $"{k} => As{x},")}
                 _ => throw new InvalidOperationException()
             }};
-        }}";
+        }}
+        
+        public async Task<OneOf<{resultArgsPrinted}>> Map{bindToType}Async<TResult>(Func<{bindToType}, Task<TResult>> mapFunc)
+        {{
+            if (mapFunc == null)
+            {{
+                throw new ArgumentNullException(nameof(mapFunc));
+            }}
+            return _index switch
+            {{
+                {genericArgs.Joined(@"
+                ", (x, k) =>
+                    x == bindToType ?
+                        $"{k} => await mapFunc(As{x})," :
+                        $"{k} => As{x},")}
+                _ => throw new InvalidOperationException()
+            }};
+        }}
+        ";
         }))}
 ");
 
@@ -161,7 +180,12 @@ namespace OneOf
 		}}";
             })
         );
-    }
+
+        if (isStruct)
+        {
+            sb.AppendLine(ImplicitHelper.GenerateImplicitOperators(genericArgs));
+        }
+}
 
     sb.AppendLine($@"
         bool Equals({className}<{genericArg}> other) =>

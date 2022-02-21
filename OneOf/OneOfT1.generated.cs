@@ -86,6 +86,21 @@ namespace OneOf
                 _ => throw new InvalidOperationException()
             };
         }
+        
+        public async Task<OneOf<TResult, T1>> MapT0Async<TResult>(Func<T0, Task<TResult>> mapFunc)
+        {
+            if (mapFunc == null)
+            {
+                throw new ArgumentNullException(nameof(mapFunc));
+            }
+            return _index switch
+            {
+                0 => await mapFunc(AsT0),
+                1 => AsT1,
+                _ => throw new InvalidOperationException()
+            };
+        }
+        
             
         public OneOf<T0, TResult> MapT1<TResult>(Func<T1, TResult> mapFunc)
         {
@@ -100,6 +115,21 @@ namespace OneOf
                 _ => throw new InvalidOperationException()
             };
         }
+        
+        public async Task<OneOf<T0, TResult>> MapT1Async<TResult>(Func<T1, Task<TResult>> mapFunc)
+        {
+            if (mapFunc == null)
+            {
+                throw new ArgumentNullException(nameof(mapFunc));
+            }
+            return _index switch
+            {
+                0 => AsT0,
+                1 => await mapFunc(AsT1),
+                _ => throw new InvalidOperationException()
+            };
+        }
+        
 
 		public bool TryPickT0(out T0 value, out T1 remainder)
 		{
@@ -124,6 +154,23 @@ namespace OneOf
             };
 			return this.IsT1;
 		}
+
+        public static implicit operator OneOf<T0, T1>(OneOf<T0> o)
+        {
+            return o.Match<OneOf<T0, T1>>(
+                t0 => t0
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1>(OneOf<T1> o)
+        {
+            return o.Match<OneOf<T0, T1>>(
+                t1 => t1
+            );
+        }
+
 
         bool Equals(OneOf<T0, T1> other) =>
             _index == other._index &&

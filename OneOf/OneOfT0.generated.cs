@@ -66,6 +66,20 @@ namespace OneOf
                 _ => throw new InvalidOperationException()
             };
         }
+        
+        public async Task<OneOf<TResult>> MapT0Async<TResult>(Func<T0, Task<TResult>> mapFunc)
+        {
+            if (mapFunc == null)
+            {
+                throw new ArgumentNullException(nameof(mapFunc));
+            }
+            return _index switch
+            {
+                0 => await mapFunc(AsT0),
+                _ => throw new InvalidOperationException()
+            };
+        }
+        
 
         bool Equals(OneOf<T0> other) =>
             _index == other._index &&
