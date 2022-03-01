@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using static OneOf.Functions;
 
 namespace OneOf
@@ -126,6 +127,23 @@ namespace OneOf
                 _ => throw new InvalidOperationException()
             };
         }
+        
+        public async Task<OneOf<TResult, T1, T2, T3>> MapT0Async<TResult>(Func<T0, Task<TResult>> mapFunc)
+        {
+            if (mapFunc == null)
+            {
+                throw new ArgumentNullException(nameof(mapFunc));
+            }
+            return _index switch
+            {
+                0 => await mapFunc(AsT0),
+                1 => AsT1,
+                2 => AsT2,
+                3 => AsT3,
+                _ => throw new InvalidOperationException()
+            };
+        }
+        
             
         public OneOf<T0, TResult, T2, T3> MapT1<TResult>(Func<T1, TResult> mapFunc)
         {
@@ -142,6 +160,23 @@ namespace OneOf
                 _ => throw new InvalidOperationException()
             };
         }
+        
+        public async Task<OneOf<T0, TResult, T2, T3>> MapT1Async<TResult>(Func<T1, Task<TResult>> mapFunc)
+        {
+            if (mapFunc == null)
+            {
+                throw new ArgumentNullException(nameof(mapFunc));
+            }
+            return _index switch
+            {
+                0 => AsT0,
+                1 => await mapFunc(AsT1),
+                2 => AsT2,
+                3 => AsT3,
+                _ => throw new InvalidOperationException()
+            };
+        }
+        
             
         public OneOf<T0, T1, TResult, T3> MapT2<TResult>(Func<T2, TResult> mapFunc)
         {
@@ -158,6 +193,23 @@ namespace OneOf
                 _ => throw new InvalidOperationException()
             };
         }
+        
+        public async Task<OneOf<T0, T1, TResult, T3>> MapT2Async<TResult>(Func<T2, Task<TResult>> mapFunc)
+        {
+            if (mapFunc == null)
+            {
+                throw new ArgumentNullException(nameof(mapFunc));
+            }
+            return _index switch
+            {
+                0 => AsT0,
+                1 => AsT1,
+                2 => await mapFunc(AsT2),
+                3 => AsT3,
+                _ => throw new InvalidOperationException()
+            };
+        }
+        
             
         public OneOf<T0, T1, T2, TResult> MapT3<TResult>(Func<T3, TResult> mapFunc)
         {
@@ -174,6 +226,23 @@ namespace OneOf
                 _ => throw new InvalidOperationException()
             };
         }
+        
+        public async Task<OneOf<T0, T1, T2, TResult>> MapT3Async<TResult>(Func<T3, Task<TResult>> mapFunc)
+        {
+            if (mapFunc == null)
+            {
+                throw new ArgumentNullException(nameof(mapFunc));
+            }
+            return _index switch
+            {
+                0 => AsT0,
+                1 => AsT1,
+                2 => AsT2,
+                3 => await mapFunc(AsT3),
+                _ => throw new InvalidOperationException()
+            };
+        }
+        
 
 		public bool TryPickT0(out T0 value, out OneOf<T1, T2, T3> remainder)
 		{
@@ -230,6 +299,145 @@ namespace OneOf
             };
 			return this.IsT3;
 		}
+
+        public static implicit operator OneOf<T0, T1, T2, T3>(OneOf<T0> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3>>(
+                t0 => t0
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3>(OneOf<T1> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3>>(
+                t1 => t1
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3>(OneOf<T0, T1> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3>>(
+                t0 => t0,
+                t1 => t1
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3>(OneOf<T2> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3>>(
+                t2 => t2
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3>(OneOf<T0, T2> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3>>(
+                t0 => t0,
+                t2 => t2
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3>(OneOf<T1, T2> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3>>(
+                t1 => t1,
+                t2 => t2
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3>(OneOf<T0, T1, T2> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3>>(
+                t0 => t0,
+                t1 => t1,
+                t2 => t2
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3>(OneOf<T3> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3>>(
+                t3 => t3
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3>(OneOf<T0, T3> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3>>(
+                t0 => t0,
+                t3 => t3
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3>(OneOf<T1, T3> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3>>(
+                t1 => t1,
+                t3 => t3
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3>(OneOf<T0, T1, T3> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3>>(
+                t0 => t0,
+                t1 => t1,
+                t3 => t3
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3>(OneOf<T2, T3> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3>>(
+                t2 => t2,
+                t3 => t3
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3>(OneOf<T0, T2, T3> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3>>(
+                t0 => t0,
+                t2 => t2,
+                t3 => t3
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3>(OneOf<T1, T2, T3> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3>>(
+                t1 => t1,
+                t2 => t2,
+                t3 => t3
+            );
+        }
+
 
         bool Equals(OneOf<T0, T1, T2, T3> other) =>
             _index == other._index &&

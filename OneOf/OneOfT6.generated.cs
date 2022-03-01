@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using static OneOf.Functions;
 
 namespace OneOf
@@ -186,6 +187,26 @@ namespace OneOf
                 _ => throw new InvalidOperationException()
             };
         }
+        
+        public async Task<OneOf<TResult, T1, T2, T3, T4, T5, T6>> MapT0Async<TResult>(Func<T0, Task<TResult>> mapFunc)
+        {
+            if (mapFunc == null)
+            {
+                throw new ArgumentNullException(nameof(mapFunc));
+            }
+            return _index switch
+            {
+                0 => await mapFunc(AsT0),
+                1 => AsT1,
+                2 => AsT2,
+                3 => AsT3,
+                4 => AsT4,
+                5 => AsT5,
+                6 => AsT6,
+                _ => throw new InvalidOperationException()
+            };
+        }
+        
             
         public OneOf<T0, TResult, T2, T3, T4, T5, T6> MapT1<TResult>(Func<T1, TResult> mapFunc)
         {
@@ -205,6 +226,26 @@ namespace OneOf
                 _ => throw new InvalidOperationException()
             };
         }
+        
+        public async Task<OneOf<T0, TResult, T2, T3, T4, T5, T6>> MapT1Async<TResult>(Func<T1, Task<TResult>> mapFunc)
+        {
+            if (mapFunc == null)
+            {
+                throw new ArgumentNullException(nameof(mapFunc));
+            }
+            return _index switch
+            {
+                0 => AsT0,
+                1 => await mapFunc(AsT1),
+                2 => AsT2,
+                3 => AsT3,
+                4 => AsT4,
+                5 => AsT5,
+                6 => AsT6,
+                _ => throw new InvalidOperationException()
+            };
+        }
+        
             
         public OneOf<T0, T1, TResult, T3, T4, T5, T6> MapT2<TResult>(Func<T2, TResult> mapFunc)
         {
@@ -224,6 +265,26 @@ namespace OneOf
                 _ => throw new InvalidOperationException()
             };
         }
+        
+        public async Task<OneOf<T0, T1, TResult, T3, T4, T5, T6>> MapT2Async<TResult>(Func<T2, Task<TResult>> mapFunc)
+        {
+            if (mapFunc == null)
+            {
+                throw new ArgumentNullException(nameof(mapFunc));
+            }
+            return _index switch
+            {
+                0 => AsT0,
+                1 => AsT1,
+                2 => await mapFunc(AsT2),
+                3 => AsT3,
+                4 => AsT4,
+                5 => AsT5,
+                6 => AsT6,
+                _ => throw new InvalidOperationException()
+            };
+        }
+        
             
         public OneOf<T0, T1, T2, TResult, T4, T5, T6> MapT3<TResult>(Func<T3, TResult> mapFunc)
         {
@@ -243,6 +304,26 @@ namespace OneOf
                 _ => throw new InvalidOperationException()
             };
         }
+        
+        public async Task<OneOf<T0, T1, T2, TResult, T4, T5, T6>> MapT3Async<TResult>(Func<T3, Task<TResult>> mapFunc)
+        {
+            if (mapFunc == null)
+            {
+                throw new ArgumentNullException(nameof(mapFunc));
+            }
+            return _index switch
+            {
+                0 => AsT0,
+                1 => AsT1,
+                2 => AsT2,
+                3 => await mapFunc(AsT3),
+                4 => AsT4,
+                5 => AsT5,
+                6 => AsT6,
+                _ => throw new InvalidOperationException()
+            };
+        }
+        
             
         public OneOf<T0, T1, T2, T3, TResult, T5, T6> MapT4<TResult>(Func<T4, TResult> mapFunc)
         {
@@ -262,6 +343,26 @@ namespace OneOf
                 _ => throw new InvalidOperationException()
             };
         }
+        
+        public async Task<OneOf<T0, T1, T2, T3, TResult, T5, T6>> MapT4Async<TResult>(Func<T4, Task<TResult>> mapFunc)
+        {
+            if (mapFunc == null)
+            {
+                throw new ArgumentNullException(nameof(mapFunc));
+            }
+            return _index switch
+            {
+                0 => AsT0,
+                1 => AsT1,
+                2 => AsT2,
+                3 => AsT3,
+                4 => await mapFunc(AsT4),
+                5 => AsT5,
+                6 => AsT6,
+                _ => throw new InvalidOperationException()
+            };
+        }
+        
             
         public OneOf<T0, T1, T2, T3, T4, TResult, T6> MapT5<TResult>(Func<T5, TResult> mapFunc)
         {
@@ -281,6 +382,26 @@ namespace OneOf
                 _ => throw new InvalidOperationException()
             };
         }
+        
+        public async Task<OneOf<T0, T1, T2, T3, T4, TResult, T6>> MapT5Async<TResult>(Func<T5, Task<TResult>> mapFunc)
+        {
+            if (mapFunc == null)
+            {
+                throw new ArgumentNullException(nameof(mapFunc));
+            }
+            return _index switch
+            {
+                0 => AsT0,
+                1 => AsT1,
+                2 => AsT2,
+                3 => AsT3,
+                4 => AsT4,
+                5 => await mapFunc(AsT5),
+                6 => AsT6,
+                _ => throw new InvalidOperationException()
+            };
+        }
+        
             
         public OneOf<T0, T1, T2, T3, T4, T5, TResult> MapT6<TResult>(Func<T6, TResult> mapFunc)
         {
@@ -300,6 +421,26 @@ namespace OneOf
                 _ => throw new InvalidOperationException()
             };
         }
+        
+        public async Task<OneOf<T0, T1, T2, T3, T4, T5, TResult>> MapT6Async<TResult>(Func<T6, Task<TResult>> mapFunc)
+        {
+            if (mapFunc == null)
+            {
+                throw new ArgumentNullException(nameof(mapFunc));
+            }
+            return _index switch
+            {
+                0 => AsT0,
+                1 => AsT1,
+                2 => AsT2,
+                3 => AsT3,
+                4 => AsT4,
+                5 => AsT5,
+                6 => await mapFunc(AsT6),
+                _ => throw new InvalidOperationException()
+            };
+        }
+        
 
 		public bool TryPickT0(out T0 value, out OneOf<T1, T2, T3, T4, T5, T6> remainder)
 		{
@@ -419,6 +560,1454 @@ namespace OneOf
             };
 			return this.IsT6;
 		}
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T2> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t2 => t2
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T2> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t2 => t2
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T2> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t2 => t2
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T2> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t2 => t2
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T3> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t3 => t3
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T3> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t3 => t3
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T3> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t3 => t3
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T3> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t3 => t3
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T2, T3> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t2 => t2,
+                t3 => t3
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T2, T3> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t2 => t2,
+                t3 => t3
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T2, T3> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t2 => t2,
+                t3 => t3
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T2, T3> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t2 => t2,
+                t3 => t3
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T4> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t4 => t4
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T4> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t4 => t4
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T4> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t4 => t4
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T4> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t4 => t4
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T2, T4> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t2 => t2,
+                t4 => t4
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T2, T4> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t2 => t2,
+                t4 => t4
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T2, T4> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t2 => t2,
+                t4 => t4
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T2, T4> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t2 => t2,
+                t4 => t4
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T3, T4> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t3 => t3,
+                t4 => t4
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T3, T4> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t3 => t3,
+                t4 => t4
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T3, T4> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t3 => t3,
+                t4 => t4
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T3, T4> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t3 => t3,
+                t4 => t4
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T2, T3, T4> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t2 => t2,
+                t3 => t3,
+                t4 => t4
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T2, T3, T4> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t2 => t2,
+                t3 => t3,
+                t4 => t4
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T2, T3, T4> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t2 => t2,
+                t3 => t3,
+                t4 => t4
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T2, T3, T4> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t2 => t2,
+                t3 => t3,
+                t4 => t4
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T2, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t2 => t2,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T2, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t2 => t2,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T2, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t2 => t2,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T2, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t2 => t2,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T3, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t3 => t3,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T3, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t3 => t3,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T3, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t3 => t3,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T3, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t3 => t3,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T2, T3, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t2 => t2,
+                t3 => t3,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T2, T3, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t2 => t2,
+                t3 => t3,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T2, T3, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t2 => t2,
+                t3 => t3,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T2, T3, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t2 => t2,
+                t3 => t3,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T4, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t4 => t4,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T4, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t4 => t4,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T4, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t4 => t4,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T4, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t4 => t4,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T2, T4, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t2 => t2,
+                t4 => t4,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T2, T4, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t2 => t2,
+                t4 => t4,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T2, T4, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t2 => t2,
+                t4 => t4,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T2, T4, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t2 => t2,
+                t4 => t4,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T3, T4, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t3 => t3,
+                t4 => t4,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T3, T4, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t3 => t3,
+                t4 => t4,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T3, T4, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t3 => t3,
+                t4 => t4,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T3, T4, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t3 => t3,
+                t4 => t4,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T2, T3, T4, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t2 => t2,
+                t3 => t3,
+                t4 => t4,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T2, T3, T4, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t2 => t2,
+                t3 => t3,
+                t4 => t4,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T2, T3, T4, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t2 => t2,
+                t3 => t3,
+                t4 => t4,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T2, T3, T4, T5> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t2 => t2,
+                t3 => t3,
+                t4 => t4,
+                t5 => t5
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T2, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t2 => t2,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T2, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t2 => t2,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T2, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t2 => t2,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T2, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t2 => t2,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T3, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t3 => t3,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T3, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t3 => t3,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T3, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t3 => t3,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T3, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t3 => t3,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T2, T3, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t2 => t2,
+                t3 => t3,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T2, T3, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t2 => t2,
+                t3 => t3,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T2, T3, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t2 => t2,
+                t3 => t3,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T2, T3, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t2 => t2,
+                t3 => t3,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T4, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t4 => t4,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T4, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t4 => t4,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T4, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t4 => t4,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T4, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t4 => t4,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T2, T4, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t2 => t2,
+                t4 => t4,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T2, T4, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t2 => t2,
+                t4 => t4,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T2, T4, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t2 => t2,
+                t4 => t4,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T2, T4, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t2 => t2,
+                t4 => t4,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T3, T4, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t3 => t3,
+                t4 => t4,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T3, T4, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t3 => t3,
+                t4 => t4,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T3, T4, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t3 => t3,
+                t4 => t4,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T3, T4, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t3 => t3,
+                t4 => t4,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T2, T3, T4, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t2 => t2,
+                t3 => t3,
+                t4 => t4,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T2, T3, T4, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t2 => t2,
+                t3 => t3,
+                t4 => t4,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T2, T3, T4, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t2 => t2,
+                t3 => t3,
+                t4 => t4,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T2, T3, T4, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t2 => t2,
+                t3 => t3,
+                t4 => t4,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T2, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t2 => t2,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T2, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t2 => t2,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T2, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t2 => t2,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T2, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t2 => t2,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T3, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t3 => t3,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T3, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t3 => t3,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T3, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t3 => t3,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T3, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t3 => t3,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T2, T3, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t2 => t2,
+                t3 => t3,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T2, T3, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t2 => t2,
+                t3 => t3,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T2, T3, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t2 => t2,
+                t3 => t3,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T2, T3, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t2 => t2,
+                t3 => t3,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T4, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t4 => t4,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T4, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t4 => t4,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T4, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t4 => t4,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T4, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t4 => t4,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T2, T4, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t2 => t2,
+                t4 => t4,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T2, T4, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t2 => t2,
+                t4 => t4,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T2, T4, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t2 => t2,
+                t4 => t4,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T2, T4, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t2 => t2,
+                t4 => t4,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T3, T4, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t3 => t3,
+                t4 => t4,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T3, T4, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t3 => t3,
+                t4 => t4,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T3, T4, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t3 => t3,
+                t4 => t4,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T1, T3, T4, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t1 => t1,
+                t3 => t3,
+                t4 => t4,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T2, T3, T4, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t2 => t2,
+                t3 => t3,
+                t4 => t4,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T0, T2, T3, T4, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t0 => t0,
+                t2 => t2,
+                t3 => t3,
+                t4 => t4,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
+
+
+        public static implicit operator OneOf<T0, T1, T2, T3, T4, T5, T6>(OneOf<T1, T2, T3, T4, T5, T6> o)
+        {
+            return o.Match<OneOf<T0, T1, T2, T3, T4, T5, T6>>(
+                t1 => t1,
+                t2 => t2,
+                t3 => t3,
+                t4 => t4,
+                t5 => t5,
+                t6 => t6
+            );
+        }
+
 
         bool Equals(OneOf<T0, T1, T2, T3, T4, T5, T6> other) =>
             _index == other._index &&
