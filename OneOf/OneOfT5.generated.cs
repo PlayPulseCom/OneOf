@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using static OneOf.Functions;
 
 namespace OneOf

@@ -39,6 +39,7 @@ string GetContent(bool isStruct, int i) {
     var sb = new StringBuilder();
 
     sb.Append(@$"using System;
+using System.Threading.Tasks;
 using static OneOf.Functions;
 
 namespace OneOf
